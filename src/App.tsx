@@ -1,5 +1,13 @@
+import Hero from "./components/Hero.tsx";
+import Navbar from "./components/Navbar.tsx";
+
 const App = () => {
-  return <div className={'text-5xl'}>App</div>;
+  return (
+    <>
+      <Navbar />
+      <Hero />
+    </>
+  );
 };
 
 export default App;
