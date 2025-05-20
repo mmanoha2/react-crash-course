@@ -35,7 +35,7 @@ const JobListing = ({ job }: { job: Job }) => {
             <FaMapMarker className="inline-block mr-2 mb-1" />
             {job.location}
           </div>
-          <a className="h-[36px] bg-blue-500 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-center text-sm">
+          <a className="h-[36px] bg-blue-500 hover:bg-blue-900 text-white px-4 py-2 rounded-lg text-center text-sm">
             Read More
           </a>
         </div>
