@@ -8,6 +8,7 @@ import MainLayout from "./layouts/MainLayout.tsx";
 import HomePage from "./pages/HomePage.tsx";
 import JobsPage from "./pages/JobsPage.tsx";
 import PageNotFound from "./pages/PageNotFound.tsx";
+import JobPage from "./pages/JobPage.tsx";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -15,6 +16,7 @@ const App = () => {
       <Route path="/" element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/jobs" element={<JobsPage />} />
+        <Route path="/job/:id" element={<JobPage />} />
         <Route path="*" element={<PageNotFound />} />
       </Route>,
     ),

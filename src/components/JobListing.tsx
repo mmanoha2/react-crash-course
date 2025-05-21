@@ -1,13 +1,7 @@
 import { FaMapMarker } from "react-icons/fa";
 import { useState } from "react";
-
-interface Job {
-  title: string;
-  type: string;
-  description: string;
-  salary: string;
-  location: string;
-}
+import { Link } from "react-router-dom";
+import type { Job } from "../interfaces/interfaces.ts";
 
 const JobListing = ({ job }: { job: Job }) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
@@ -35,9 +29,12 @@ const JobListing = ({ job }: { job: Job }) => {
             <FaMapMarker className="inline-block mr-2 mb-1" />
             {job.location}
           </div>
-          <a className="h-[36px] bg-blue-500 hover:bg-blue-900 text-white px-4 py-2 rounded-lg text-center text-sm">
+          <Link
+            to={`/job/${job.id}`}
+            className="h-[36px] bg-blue-500 hover:bg-blue-900 text-white px-4 py-2 rounded-lg text-center text-sm"
+          >
             Read More
-          </a>
+          </Link>
         </div>
       </div>
     </div>
