@@ -1,18 +1,23 @@
 import { useState } from "react";
 import type { Job } from "../interfaces/interfaces.ts";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const AddJobPage = () => {
-  const [type, setType] = useState("Remote");
-  const [title, setTitle] = useState("React Developer");
-  const [description, setDescription] = useState("Need Good React Developer");
-  const [salary, setSalary] = useState("$100K - 125K");
-  const [location, setLocation] = useState("USA");
+  const currentLocation = useLocation();
+  const { mode, job } = currentLocation.state || {};
+
+  const [type, setType] = useState(job?.type || "Remote");
+  const [title, setTitle] = useState(job?.title || "React Developer");
+  const [description, setDescription] = useState(
+    job?.description || "Need Good React Developer",
+  );
+  const [salary, setSalary] = useState(job?.salary || "$100K - 125K");
+  const [location, setLocation] = useState(job?.location || "USA");
   const [company, setCompany] = useState({
-    name: "company name",
-    description: "company description",
-    contactEmail: "contact@company.com",
-    contactPhone: "000-000-0000",
+    name: job?.company?.name || "company name",
+    description: job?.company?.description || "company description",
+    contactEmail: job?.company?.contactEmail || "contact@company.com",
+    contactPhone: job?.company?.contactPhone || "000-000-0000",
   });
 
   const navigate = useNavigate();
@@ -26,31 +31,33 @@ const AddJobPage = () => {
     company,
   };
 
-  const addJob = async (e: { preventDefault: () => void }) => {
+  const handleJobSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    await fetch("/api/jobs", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newJob),
-    });
+    const headers = { "Content-Type": "application/json" };
+    const body = JSON.stringify(newJob);
 
-    return navigate("/jobs");
+    const submitJob = async () => {
+      if (mode === "edit") {
+        if (!job?.id) return;
+        return fetch(`/api/jobs/${job.id}`, { method: "PUT", headers, body });
+      }
+      return fetch("/api/jobs", { method: "POST", headers, body });
+    };
+
+    await submitJob();
+    navigate("/jobs");
   };
 
   return (
-    <section className="bg-indigo-50">
-      <div className="container m-auto max-w-2xl py-24">
+    <div className="container m-auto py-24 bg-blue-50">
+      <section className="max-w-2xl mx-auto">
         <div className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
-          <form
-            onSubmit={addJob}
-            className="space-y-4"
-            action="#"
-            method="POST"
-          >
-            <h2 className="text-3xl text-center font-semibold mb-6">Add Job</h2>
+          <form onSubmit={handleJobSubmit} className="space-y-4">
+            <h2 className="text-3xl text-center font-semibold mb-6">
+              {" "}
+              {mode === "edit" ? "Edit Job" : "Add Job"}
+            </h2>
 
             <div className="mb-4">
               <label
@@ -242,13 +249,13 @@ const AddJobPage = () => {
                 className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
                 type="submit"
               >
-                Add Job
+                {mode === "edit" ? "Update Job" : "Add Job"}
               </button>
             </div>
           </form>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
 export default AddJobPage;

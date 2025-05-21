@@ -85,18 +85,18 @@
       }
     },
     {
-      "id": "6f7e",
-      "type": "Internship",
-      "title": "React Developer - internshipo",
+      "type": "Full-Time",
+      "title": "React Developer - Full Time Internship",
       "description": "Need Good React Developer with good knowledge",
-      "salary": "Under $50K",
+      "salary": "$60K - 70K",
       "location": "Georgia, USA",
       "company": {
         "name": "Prokarma",
-        "description": "Prokarma cause Nothuigngg",
+        "description": "Prokarma could be best option in disguise",
         "contactEmail": "prokarma@company.com",
         "contactPhone": "111-234-2434"
-      }
+      },
+      "id": "6f7e"
     }
   ]
 }
