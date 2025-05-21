@@ -6,15 +6,7 @@ import { FaArrowLeft } from "react-icons/fa";
 
 const JobPage = () => {
   const { id } = useParams();
-  const [job, setJob] = useState<Job>({
-    company: { contactEmail: "", contactPhone: "", description: "", name: "" },
-    description: "",
-    id: "",
-    location: "",
-    salary: "",
-    title: "",
-    type: "",
-  });
+  const [job, setJob] = useState<Job>(undefined as any);
 
   useEffect(() => {
     const fetchJob = async () => {

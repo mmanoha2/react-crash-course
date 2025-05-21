@@ -9,6 +9,7 @@ import HomePage from "./pages/HomePage.tsx";
 import JobsPage from "./pages/JobsPage.tsx";
 import PageNotFound from "./pages/PageNotFound.tsx";
 import JobPage from "./pages/JobPage.tsx";
+import AddJobPage from "./pages/AddJobPage.tsx";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/jobs" element={<JobsPage />} />
         <Route path="/job/:id" element={<JobPage />} />
+        <Route path="/add-job" element={<AddJobPage />} />
         <Route path="*" element={<PageNotFound />} />
       </Route>,
     ),
