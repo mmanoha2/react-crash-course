@@ -83,6 +83,20 @@
         "contactEmail": "contact@ipsumlorem.com",
         "contactPhone": "555-555-5555"
       }
+    },
+    {
+      "id": "6f7e",
+      "type": "Internship",
+      "title": "React Developer - internshipo",
+      "description": "Need Good React Developer with good knowledge",
+      "salary": "Under $50K",
+      "location": "Georgia, USA",
+      "company": {
+        "name": "Prokarma",
+        "description": "Prokarma cause Nothuigngg",
+        "contactEmail": "prokarma@company.com",
+        "contactPhone": "111-234-2434"
+      }
     }
   ]
 }
