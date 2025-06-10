@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"  # Vite dev server
+      - "5555:5555"  # JSON Server
+    volumes:
+      - ./:/app
+      - /app/node_modules  # Prevent host node_modules override
+    environment:
+      - NODE_ENV=development
+    stdin_open: true  # Required for React 18+ strict mode
+    tty: true         # Required for React 18+ strict mode

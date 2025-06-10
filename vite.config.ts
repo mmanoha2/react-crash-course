@@ -6,7 +6,12 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
+    host: true,
     port: 3000,
+    strictPort: true,
+    watch: {
+      usePolling: true, // Needed for Docker file watching
+    },
     proxy: {
       "/api": {
         target: "http://localhost:5555",
