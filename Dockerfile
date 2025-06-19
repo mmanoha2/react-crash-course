@@ -4,7 +4,7 @@ FROM node
 WORKDIR /app
 
 # Copy package files first for better layer caching
-COPY package.json package-lock.json ./
+COPY frontend/package.json package-lock.json ./
 
 # Install dependencies (including devDependencies)
 RUN npm install
