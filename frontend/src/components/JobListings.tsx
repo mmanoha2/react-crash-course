@@ -17,7 +17,7 @@ const JobListings = ({ isHome = false }: JobListingProps) => {
       const fetchJobs = async () => {
         const response = await fetch(url);
         const data = await response.json();
-        setJobs(data);
+        setJobs(data.jobs);
       };
       fetchJobs().then(() => {});
     } catch (error) {
